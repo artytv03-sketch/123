@@ -1,0 +1,108 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.boat {
+  --boat-w: clamp(118px, 26vw, 250px);
+  --boat-h: calc(var(--boat-w) * 1.45834);
+  position: absolute;
+  left: 0;
+  top: calc(var(--horizon, 62svh) + var(--boat-w) * 0.1 - var(--boat-h) * 0.5);
+  width: var(--boat-w);
+  height: var(--boat-h);
+  opacity: var(--boat-vis, 0);
+  animation: drift 190s linear infinite;
+  will-change: transform, opacity;
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: bob 7.5s ease-in-out infinite;
+  transform-origin: 52% 80%;
+}
+
+.sails {
+  transform-box: view-box;
+  transform-origin: 128px 168px;
+  animation: flex 6s ease-in-out infinite;
+}
+
+.wake {
+  animation: breatheWake 5.2s ease-in-out infinite;
+}
+
+.reflection {
+  filter: blur(0.6px);
+}
+
+@media (max-width: 520px) {
+  .boat {
+    --boat-w: clamp(112px, 32vw, 170px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boat {
+    animation: none;
+    transform: translate3d(24vw, 0, 0);
+  }
+
+  .inner,
+  .sails,
+  .wake {
+    animation: none;
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate3d(-32vw, 0, 0);
+    opacity: 0;
+  }
+  7% {
+    opacity: var(--boat-vis, 0);
+  }
+  72% {
+    opacity: var(--boat-vis, 0);
+  }
+  100% {
+    transform: translate3d(116vw, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-0.7deg);
+  }
+  50% {
+    transform: translate3d(0, -1.6px, 0) rotate(0.6deg);
+  }
+}
+
+@keyframes flex {
+  0%,
+  100% {
+    transform: rotate(1.1deg) skewX(-0.4deg);
+  }
+  50% {
+    transform: rotate(-1.3deg) skewX(0.5deg);
+  }
+}
+
+@keyframes breatheWake {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.75;
+  }
+}

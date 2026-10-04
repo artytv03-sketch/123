@@ -1,0 +1,223 @@
+.scene {
+  position: relative;
+  height: calc(var(--screens, 1.3) * 100vh);
+  height: calc(var(--screens, 1.3) * 100svh);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 0 clamp(20px, 7vw, 96px);
+  padding-bottom: clamp(20px, 7vh, 80px);
+  pointer-events: none;
+}
+
+.stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    64% 46% at 50% 47%,
+    rgba(4, 9, 14, 0.42),
+    rgba(4, 9, 14, 0.16) 58%,
+    rgba(4, 9, 14, 0) 80%
+  );
+  pointer-events: none;
+}
+
+.block {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: min(94vw, 46rem);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------- появления */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 0.85rem, 0);
+  filter: blur(7px);
+  transition:
+    opacity 1.9s var(--ease-weather),
+    transform 2.1s var(--ease-weather),
+    filter 1.9s var(--ease-weather);
+}
+
+.reveal[data-shown='true'] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+/* --------------------------------------------------------------- шрифты */
+
+.eyebrow {
+  margin: 0 0 clamp(1.1rem, 3vh, 2rem);
+  font-family: var(--font-ui);
+  font-size: clamp(0.625rem, 1.6vw, 0.72rem);
+  font-weight: 400;
+  letter-spacing: 0.38em;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+}
+
+.hero {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(3.6rem, 15vw, 9.5rem);
+  line-height: 0.98;
+  letter-spacing: 0.005em;
+  color: var(--ink);
+  text-shadow: 0 0 60px rgba(4, 10, 16, 0.85);
+}
+
+.display {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(2.3rem, 8.6vw, 5.4rem);
+  line-height: 1.08;
+  letter-spacing: 0.004em;
+  color: var(--ink);
+  text-shadow: 0 0 70px rgba(4, 10, 16, 0.9);
+}
+
+.displayTall {
+  font-size: clamp(2.7rem, 10.5vw, 6.4rem);
+  line-height: 1.04;
+}
+
+.soft {
+  font-size: clamp(1.35rem, 4.6vw, 2.5rem);
+  line-height: 1.24;
+  color: var(--ink-soft);
+}
+
+.medium {
+  font-size: clamp(1.55rem, 5.4vw, 3rem);
+  line-height: 1.24;
+  color: var(--ink-soft);
+}
+
+.whisper {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: clamp(0.78rem, 2.2vw, 0.92rem);
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: lowercase;
+  color: var(--ink-faint);
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.1rem, 4.2vh, 2.6rem);
+  margin: clamp(1.6rem, 6vh, 3.4rem) 0 0;
+}
+
+.word {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(1.9rem, 7.4vw, 4.2rem);
+  line-height: 1;
+  color: var(--ink);
+}
+
+.wordSoft {
+  color: rgba(233, 241, 247, 0.88);
+}
+
+.note {
+  margin: clamp(2rem, 7vh, 3.6rem) 0 0;
+  max-width: 36ch;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  line-height: 1.55;
+  color: rgba(216, 230, 241, 0.74);
+}
+
+.hint {
+  position: fixed;
+  left: 50%;
+  bottom: max(62px, calc(env(safe-area-inset-bottom) + 54px));
+  transform: translateX(-50%);
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 0.66rem;
+  letter-spacing: 0.34em;
+  text-transform: lowercase;
+  color: rgba(157, 177, 194, 0.55);
+  transition: opacity 1.4s var(--ease-weather);
+  animation: breathe 6.5s ease-in-out infinite;
+}
+
+.hint[data-hidden='true'] {
+  opacity: 0;
+  animation: none;
+}
+
+.mark {
+  margin: clamp(2.4rem, 8vh, 4rem) 0 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  color: rgba(217, 162, 95, 0.55);
+}
+
+.rule {
+  width: clamp(38px, 9vw, 64px);
+  height: 1px;
+  margin: clamp(1.2rem, 4vh, 2.2rem) 0 0;
+  background: linear-gradient(90deg, transparent, rgba(217, 162, 95, 0.55), transparent);
+  transform-origin: center;
+  transition: transform 2.4s var(--ease-weather);
+  transform: scaleX(0);
+}
+
+.rule[data-shown='true'] {
+  transform: scaleX(1);
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.32;
+  }
+  50% {
+    opacity: 0.72;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .hint {
+    animation: none;
+    opacity: 0.6;
+  }
+
+  .rule {
+    transition: none;
+    transform: scaleX(1);
+  }
+}

@@ -1,0 +1,79 @@
+:root {
+  --ink: #e9f1f7;
+  --ink-soft: #9db1c2;
+  --ink-faint: #6c8296;
+  --amber: #d9a25f;
+  --void: #071018;
+
+  --font-display: 'Cormorant Garamond', 'Playfair Display', 'Times New Roman', serif;
+  --font-ui: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease-weather: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  --sail-hull: #04090e;
+  --sail-mast: #071019;
+  --sail-edge: rgba(196, 219, 238, 0.22);
+  --sail-wake: rgba(190, 214, 234, 0.34);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--void);
+  color: var(--ink);
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior-y: none;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  position: relative;
+  isolation: isolate;
+}
+
+::selection {
+  background: rgba(217, 162, 95, 0.25);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050d14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1d3346;
+  border-radius: 4px;
+}

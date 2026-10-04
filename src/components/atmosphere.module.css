@@ -1,0 +1,37 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* лёгкая оптика: холодный свет сверху, тёплый отблеск снизу */
+.haze {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(88% 38% at 50% 4%, rgba(152, 184, 210, 0.055), transparent 70%),
+    radial-gradient(72% 24% at 50% 97%, rgba(217, 162, 95, 0.05), transparent 72%);
+  mix-blend-mode: screen;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    116% 90% at 50% 46%,
+    rgba(2, 5, 9, 0) 36%,
+    rgba(2, 5, 9, 0.5) 76%,
+    rgba(1, 3, 6, 0.82) 100%
+  );
+  opacity: var(--vignette, 1);
+}
